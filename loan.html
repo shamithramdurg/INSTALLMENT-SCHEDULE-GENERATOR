@@ -12,7 +12,7 @@
 
 </head>
 
-<body>
+<body data-protected="true">
 
 <header class="navbar">
 
@@ -22,7 +22,8 @@
 
     <nav>
         <a href="dashboard.html">Dashboard</a>
-        <a href="index.html">Logout</a>
+        <span class="nav-user" id="userName"></span>
+        <a href="#" data-logout>Logout</a>
     </nav>
 
 </header>
@@ -33,6 +34,8 @@
 
         <h1>Enter Loan Details</h1>
 
+        <p id="loanMessage" class="msg" role="alert" hidden></p>
+
         <form id="loanForm">
 
             <label for="principal">
@@ -42,7 +45,9 @@
             <input
                 type="number"
                 id="principal"
-                min="1"
+                min="100"
+                max="1000000000"
+                step="0.01"
                 placeholder="Enter loan amount"
                 required
             >
@@ -55,6 +60,7 @@
                 type="number"
                 id="interest"
                 min="0"
+                max="100"
                 step="0.01"
                 placeholder="Enter interest rate"
                 required
@@ -68,6 +74,8 @@
                 type="number"
                 id="tenure"
                 min="1"
+                max="600"
+                step="1"
                 placeholder="Enter tenure"
                 required
             >
@@ -100,6 +108,8 @@
 
             </select>
 
+            <small id="frequencyHint" class="hint"></small>
+
             <label for="startDate">
                 Starting Date
             </label>
@@ -120,6 +130,12 @@
 
 </div>
 
+<footer>
+    <p>© 2026 Installment Schedule Generator</p>
+</footer>
+
+<script src="js/api-config.js"></script>
+    <script src="js/main.js"></script>
 <script src="js/loan.js"></script>
 
 </body>

@@ -4,43 +4,41 @@ const registerForm = document.getElementById("registerForm");
 
 if (registerForm) {
 
-    registerForm.addEventListener("submit", function(event) {
+    registerForm.addEventListener("submit", async function (event) {
 
         event.preventDefault();
 
-        const name =
-            document.getElementById("name").value.trim();
+        const message = document.getElementById("formMessage");
+        const button = registerForm.querySelector("button[type=submit]");
 
-        const email =
-            document.getElementById("email").value.trim();
-
-        const password =
-            document.getElementById("password").value;
-
-        const confirmPassword =
-            document.getElementById("confirmPassword").value;
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
 
         if (password !== confirmPassword) {
-
-            alert("Passwords do not match.");
+            showMessage(message, "Passwords do not match.", "error");
             return;
-
         }
 
-        const user = {
-            name: name,
-            email: email,
-            password: password
-        };
+        button.disabled = true;
 
-        localStorage.setItem(
-            "user",
-            JSON.stringify(user)
-        );
+        try {
+            await api("/auth/register", {
+                method: "POST",
+                body: { name: name, email: email, password: password }
+            });
 
-        alert("Registration successful!");
+            showMessage(message, "Registration successful! Redirecting to login...", "success");
 
-        window.location.href = "login.html";
+            setTimeout(function () {
+                window.location.href = "login.html";
+            }, 1000);
+
+        } catch (err) {
+            showMessage(message, err.message, "error");
+            button.disabled = false;
+        }
     });
 }
 
@@ -51,40 +49,29 @@ const loginForm = document.getElementById("loginForm");
 
 if (loginForm) {
 
-    loginForm.addEventListener("submit", function(event) {
+    loginForm.addEventListener("submit", async function (event) {
 
         event.preventDefault();
 
-        const email =
-            document.getElementById("loginEmail").value.trim();
+        const message = document.getElementById("loginMessage");
+        const button = loginForm.querySelector("button[type=submit]");
 
-        const password =
-            document.getElementById("loginPassword").value;
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value;
 
-        const storedUser =
-            JSON.parse(localStorage.getItem("user"));
+        button.disabled = true;
 
-        if (!storedUser) {
-
-            alert("Please register first.");
-            return;
-        }
-
-        if (
-            email === storedUser.email &&
-            password === storedUser.password
-        ) {
-
-            localStorage.setItem("loggedIn", "true");
-
-            alert("Login successful!");
+        try {
+            await api("/auth/login", {
+                method: "POST",
+                body: { email: email, password: password }
+            });
 
             window.location.href = "dashboard.html";
 
-        } else {
-
-            alert("Invalid email or password.");
+        } catch (err) {
+            showMessage(message, err.message, "error");
+            button.disabled = false;
         }
-
     });
 }

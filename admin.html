@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Panel</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-protected="true" data-admin="true">
+
+<header class="navbar">
+
+    <div class="logo">
+        Installment Generator
+    </div>
+
+    <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="loan.html">New Schedule</a>
+        <span class="nav-user" id="userName"></span>
+        <a href="#" data-logout>Logout</a>
+    </nav>
+
+</header>
+
+<section class="dashboard">
+
+    <h1>Admin Panel</h1>
+
+    <p>Manage users and stored loan records.</p>
+
+    <p id="pageMessage" class="msg" role="alert" hidden></p>
+
+    <div id="stats" class="summary"></div>
+
+    <h2 class="section-title">Users</h2>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Schedules</th>
+                    <th>Joined</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="usersBody"></tbody>
+        </table>
+    </div>
+
+    <h2 class="section-title">All Saved Schedules</h2>
+
+    <p id="loansEmpty" class="empty" hidden>No schedules have been saved yet.</p>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Principal</th>
+                    <th>Rate</th>
+                    <th>Tenure</th>
+                    <th>Frequency</th>
+                    <th>Installment</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="loansBody"></tbody>
+        </table>
+    </div>
+
+</section>
+
+<script src="js/api-config.js"></script>
+    <script src="js/main.js"></script>
+<script src="js/admin.js"></script>
+
+</body>
+</html>

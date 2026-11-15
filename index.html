@@ -14,8 +14,9 @@
 
     <nav>
         <a href="index.html">Home</a>
-        <a href="login.html">Login</a>
-        <a href="register.html">Register</a>
+        <a href="dashboard.html" data-user-only hidden>Dashboard</a>
+        <a href="login.html" data-guest-only>Login</a>
+        <a href="register.html" data-guest-only>Register</a>
     </nav>
 </header>
 
@@ -74,6 +75,9 @@
 <footer>
     <p>© 2026 Installment Schedule Generator</p>
 </footer>
+
+<script src="js/api-config.js"></script>
+    <script src="js/main.js"></script>
 
 </body>
 </html>

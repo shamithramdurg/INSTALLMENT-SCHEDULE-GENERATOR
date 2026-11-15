@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body data-protected="true">
 
 <header class="navbar">
 
@@ -21,7 +21,9 @@
     <nav>
         <a href="dashboard.html">Dashboard</a>
         <a href="loan.html">New Schedule</a>
-        <a href="index.html">Logout</a>
+        <a href="admin.html" data-admin-only hidden>Admin</a>
+        <span class="nav-user" id="userName"></span>
+        <a href="#" data-logout>Logout</a>
     </nav>
 
 </header>
@@ -56,11 +58,11 @@
             <h2>View Report</h2>
 
             <p>
-                View the previously generated installment report.
+                Open, print or download any of your previously generated schedules.
             </p>
 
-            <a href="schedule.html" class="btn">
-                View Schedule
+            <a href="#saved" class="btn">
+                View Saved Schedules
             </a>
 
         </div>
@@ -68,6 +70,41 @@
     </div>
 
 </section>
+
+<section class="dashboard saved" id="saved">
+
+    <h2>Saved Schedules</h2>
+
+    <p id="pageMessage" class="msg" role="alert" hidden></p>
+
+    <p id="savedEmpty" class="empty" hidden>
+        You have no saved schedules yet. <a href="loan.html">Create your first one.</a>
+    </p>
+
+    <div class="table-container" id="savedTable" hidden>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Created</th>
+                    <th>Principal</th>
+                    <th>Rate</th>
+                    <th>Tenure</th>
+                    <th>Frequency</th>
+                    <th>Installment</th>
+                    <th>Total Interest</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="savedBody"></tbody>
+        </table>
+    </div>
+
+</section>
+
+<script src="js/api-config.js"></script>
+    <script src="js/main.js"></script>
+<script src="js/dashboard.js"></script>
 
 </body>
 </html>

@@ -12,7 +12,7 @@
 
 </head>
 
-<body>
+<body data-protected="true">
 
 <header class="navbar">
 
@@ -23,9 +23,11 @@
     <nav>
         <a href="dashboard.html">Dashboard</a>
         <a href="loan.html">New Schedule</a>
-        <button onclick="window.print()" class="print-btn">
+        <span class="nav-user" id="userName"></span>
+        <button type="button" data-print class="print-btn">
             Print
         </button>
+        <a href="#" data-logout>Logout</a>
     </nav>
 
 </header>
@@ -33,6 +35,14 @@
 <section class="schedule-container">
 
     <h1>Installment Schedule</h1>
+
+    <p id="pageMessage" class="msg" role="alert" hidden></p>
+
+    <div class="toolbar">
+        <a class="btn-small" href="report.html" data-report-link>Printable Report</a>
+        <button type="button" class="btn-small" data-download-csv>Download CSV</button>
+        <a class="btn-small" href="dashboard.html#saved">All Saved Schedules</a>
+    </div>
 
     <div id="summary" class="summary"></div>
 
@@ -57,12 +67,16 @@
 
             </tbody>
 
+            <tfoot id="scheduleFoot"></tfoot>
+
         </table>
 
     </div>
 
 </section>
 
+<script src="js/api-config.js"></script>
+    <script src="js/main.js"></script>
 <script src="js/schedule.js"></script>
 
 </body>

@@ -12,22 +12,32 @@
 
 </head>
 
-<body>
+<body data-protected="true">
 
 <div class="report">
 
     <h1>Installment Repayment Report</h1>
 
+    <p id="pageMessage" class="msg" role="alert" hidden></p>
+
     <div id="reportDetails"></div>
 
-    <button
-        onclick="window.print()"
-        class="btn">
-        Print Report
-    </button>
+    <div class="toolbar">
+        <button type="button" data-print class="btn">
+            Print Report
+        </button>
+        <button type="button" data-download-csv class="btn">
+            Download CSV
+        </button>
+        <a href="dashboard.html#saved" class="btn">
+            Back to Dashboard
+        </a>
+    </div>
 
 </div>
 
+<script src="js/api-config.js"></script>
+    <script src="js/main.js"></script>
 <script src="js/schedule.js"></script>
 
 </body>
